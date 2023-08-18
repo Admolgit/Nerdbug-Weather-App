@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Cities from '../component/Cities';
 import Style from '../style/home.module.css';
 import WeatherDetails from './WeatherDetails';
-import { getWeatherData, setWeatherData } from '../component/WeatherCache';
-import uuid from 'react-uuid';
+import { setWeatherData } from '../component/WeatherCache';
 
 function WeatherApiPage() {
   const [weather, setWeather] = useState(null);
@@ -18,10 +18,13 @@ function WeatherApiPage() {
     const fetchWeather = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}&query=${city}&units=m`);
-        const data = await response.json();
+        const response = await axios.get(`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}&query=${city}&units=m`);
+        const {data} = response;
+
+        console.log(data, "DATA5");
 
         setWeather(data);
+        setWeatherData(data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -34,16 +37,12 @@ function WeatherApiPage() {
   const handleCityClick = (e) => {
     setCity(e.target.innerHTML);
     navigate('/weather-details');
+    
     <WeatherDetails weather={weather} />
-    console.log(e.target.innerHTML, "CITY")
   }
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Oops! Something went wrong...</div>;
-
-  
-  console.log(weather, "WEATHER")
-  console.log(process.env.REACT_APP_OPEN_WEATHER_API_KEY, "API KEY")
 
   return (
     <div className={Style.homeContainer}>

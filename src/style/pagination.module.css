@@ -1,0 +1,28 @@
+.PaginationContainer {
+    padding-top: 1rem;
+    position: absolute;
+    bottom: 30px;
+}
+.Pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+/* 'page-item active bg-[blue] p-2 text-white' */
+.PaginationList {
+   color: #fff;
+}
+.pageLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}

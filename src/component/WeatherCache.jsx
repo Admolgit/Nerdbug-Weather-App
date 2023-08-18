@@ -20,11 +20,25 @@ export const getWeatherData = () => {
 };
 
 export const setWeatherData = (data) => {
-  localStorage.setItem(
-    WEATHER_CACHE,
-    JSON.stringify({
-      timestamp: currentTime(),
-      data,
-    }),
-  );
+  const existingWeatherData = JSON.parse(localStorage.getItem('weather')) || [];
+
+  const weatherFound = existingWeatherData.find((weatherData) => {
+    return weatherData.location.name === data.location.name;
+  });
+
+  if (weatherFound) {
+    const index = existingWeatherData.findIndex((weatherData) => {
+      return weatherData.location.name === data.location.name;
+    });
+    existingWeatherData.splice(index, 1, weatherFound);
+    localStorage.setItem('weather', JSON.stringify(existingWeatherData));
+  } else {
+    localStorage.setItem(
+      WEATHER_CACHE,
+      JSON.stringify({
+        timestamp: currentTime(),
+        data,
+      }),
+    );
+  }
 };

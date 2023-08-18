@@ -1,5 +1,5 @@
 .weatherContainer {
-  background: #D5A779;
+  background: #d5a779;
   height: 100%;
   width: 100%;
 }
@@ -9,7 +9,9 @@
 .weatherForm {
   padding: 80px;
 }
-
+.weatherBoxContainer {
+  height: 100%;
+}
 .weatherForm input {
   width: 100%;
   padding: 10px;
@@ -41,10 +43,13 @@
 }
 .weatherDetails {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 10px;
   font-size: 20px;
-  gap: 20px;
+  gap: 10px;
+}
+.weatherDetails h1 {
+  font-size: 24px;
 }
 .weatherBox {
   background-color: #fff;
@@ -65,4 +70,40 @@
 }
 .weatherNote {
   flex: 1;
+}
+.favouriteContainer {
+  height: 50vh;
+}
+.listContainer {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  align-items: center;
+  padding: 20px;
+  list-style: none;
+}
+.favouriteTitle {
+  font-size: 30px;
+}
+.favouriteList h2 {
+  font-size: 14px;
+  color: #000;
+}
+.favouriteList p {
+  font-size: 10px;
+  color: #000;
+}
+.pagination {
+  padding-top: 1rem;
+  bottom: 30px;
+}
+.removeButton {
+  background-color: #d5a779;
+  padding: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 10px;
+}
+.map {
+  display: none;
 }
